@@ -1,0 +1,322 @@
+// Custom styles for project
+
+@import "../bower_components/patternfly/less/patternfly-additions.less";
+
+// import custom Citi branding
+@import "../css-citibrand/toolkit.css";
+
+//additional Citi branding files
+@import "../css-citibrand/datepicker3.css";
+//@import "../css-citibrand/font-awesome.css";
+//@import "../css-citibrand/jquery.gritter.css";
+
+@fa-font-path:      "../bower_components/patternfly/components/font-awesome/fonts/";
+@font-path:         "../bower_components/patternfly/dist/fonts";
+@icon-font-path:    "../bower_components/patternfly/components/bootstrap/fonts/";
+
+
+/////
+// copied from original app.css
+html,body{
+  height: 100%
+}
+body {
+  padding-top: 0;
+}
+
+// Padding to account for Citi header
+.container-fluid {
+    padding-top: 2em;
+}
+
+.bs-wizard {margin-top: 40px;}
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #0099ff; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #40b9fe; border-radius: 50px; position: absolute; top: 8px; left: 8px; }
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #0099ff;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px
+}
+
+.col-xs-5ths {
+  width: 20%;
+  float:left;
+}
+
+@media(min-width: 768px) {
+  .col-sm-5ths {
+    width: 20%;
+    float:left;
+  }
+}
+
+@media(min-width: 992px) {
+  .col-md-5ths {
+    width: 20%;
+    float:left;
+  }
+}
+
+@media(min-width: 1200px) {
+  .col-lg-5ths {
+    width: 20%;
+    float:left;
+  }
+}
+
+
+
+//this removes the caret added in dropdown.less
+.caret:before {
+  content:none;
+}
+
+//this fixes an overlap of the icon with the text in an alert
+.alert .pficon {
+  left: 0;
+  top: 0;
+  position:relative;
+  vertical-align:middle;
+}
+
+//Header tweaks
+.navbar-default .navbar-brand {
+  color: @color-pf-white;
+}
+
+// Sidebar tweaks
+#sidebar #sidebar-inner > .nav-list > li a .caret {
+  float: right;
+}
+#sidebar #sidebar-inner > .nav-list > li {
+  border-top: 1px dotted gray;
+}
+#sidebar #sidebar-inner > .nav-list > li:last-child {
+   border-bottom: 1px dotted gray;
+}
+
+.bootstrap-select {
+  width: 220px \0;
+  background-color: #008ce6;
+}
+
+.panel-default > .panel-heading {
+  background-color: #008ce6;
+}
+
+// set modal background to be full screen with opacity
+.modal-backdrop
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    background-color: rgba(9,9,9,0.5);
+}
+
+// reset buttons that mere changed by citi css
+.btn-danger {
+    background-color: #a30000;
+    background-image: -webkit-linear-gradient(top,#c00 0,#a30000 100%);
+    background-image: -o-linear-gradient(top,#c00 0,#a30000 100%);
+    background-image: linear-gradient(to bottom,#c00 0,#a30000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcc0000', endColorstr='#ffa30000', GradientType=0);
+    border-color: #8b0000;
+    color: #fff;
+}
+.btn-default {
+    background-color: #f1f1f1;
+    background-image: -webkit-linear-gradient(top,#fafafa 0,#ededed 100%);
+    background-image: -o-linear-gradient(top,#fafafa 0,#ededed 100%);
+    background-image: linear-gradient(to bottom,#fafafa 0,#ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
+    border-color: #bbb;
+    color: #4d5258;
+}
+.btn-primary {
+    /* background-color: #0088ce; */
+    background-image: -webkit-linear-gradient(top,#39a5dc 0,#0088ce 100%);
+    background-image: -o-linear-gradient(top,#39a5dc 0,#0088ce 100%);
+    background-image: linear-gradient(to bottom,#39a5dc 0,#0088ce 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff39a5dc', endColorstr='#ff0088ce', GradientType=0);
+    border-color: #00659c;
+    color: #fff;
+}
+.btn-danger.active, .btn-danger:active, .btn-danger:focus, .btn-danger:hover, .open .dropdown-toggle.btn-danger {
+    background-color: #a30000;
+    background-image: none;
+    border-color: #8b0000;
+    color: #fff;
+}
+.btn-default.active, .btn-default:active, .btn-default:focus, .btn-default:hover, .open .dropdown-toggle.btn-default {
+    background-color: #f1f1f1;
+    background-image: none;
+    border-color: #bbb;
+    color: #4d5258;
+}
+.btn-primary.active, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open .dropdown-toggle.btn-primary {
+    background-color: #0088ce;
+    background-image: none;
+    border-color: #00659c;
+    color: #fff;
+}
+
+
+// set up chevrons
+.crumbs {
+  display: inline-block;
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+
+.crumbs ul {
+  display: block;
+  padding-left: 10px;
+}
+
+.crumbs ul li {
+  width: 22%;
+  display: block;
+  float: left;
+  height: 40px;
+  background: #008ce6;
+  text-align: center;
+  padding: 12px 0 0 22px;
+  position: relative;
+  margin: 0 8px 0 0; 
+  text-decoration: none;
+  color: #fff;
+}
+
+.crumbs ul li:after {
+  content: "";  
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #008ce6;
+  position: absolute; 
+  right: -20px; 
+  top: 0;
+  z-index: 10
+}
+
+.crumbs ul li:before {
+  content: "";  
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid rgb(249, 249, 249);
+  position: absolute; left: 0; top: 0;
+}
+
+.crumbs .active {
+  background: #008ce6;
+}
+
+.crumbs .active:after {
+  border-left: 20px solid #008ce6;
+}
+
+
+.crumbs .inactive {
+  background: #bbbbbb;
+}
+
+.crumbs .inactive:after {
+  border-left: 20px solid #bbbbbb;
+}
+
+.crumbs .complete {
+  background: #5cb85c;
+}
+.crumbs .complete:after {
+  border-left: 20px solid #5cb85c;
+}
+
+.crumbs-hidden {
+  visibility: hidden;
+}
+
+.clock {
+  vertical-align: bottom;
+  height: 3em;
+  padding-right: 1em;
+}
+
+.datebadge {
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+.datetext {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 1.5em
+}
+
+.dateboxtop {
+    border-radius: 5px 5px 0 0;
+    background: #008ce6;
+    width: 3em;
+    padding-top: 4px;
+    text-align: center;
+    height: 2em;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    margin-right: 2em;
+    margin-left: 0.5em;
+    color: #fff;
+}
+
+.dateboxbottom {
+    border-radius: 0 0 5px 5px;
+    background: rgb(249, 249, 249);
+    width: 3em;
+    height: 2em;
+    padding-top: 5px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    text-align: center;
+     
+     margin-left: 0.5em
+}
+
+.overflowx {
+  overflow-x: scroll;
+}
+
+.invalidCiti {
+  border-color: #ff2900;
+}
+
+.alertCiti {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #ffe6e6;
+    padding: 5px 15px;
+}

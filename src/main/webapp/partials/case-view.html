@@ -1,0 +1,262 @@
+<div class="container-fluid container-cards-pf">
+    <!-- <div class="container"> -->
+
+        <div class="page-header">
+            <div class="pull-left">
+            <!-- Display Case ID if its complete otherwise Display Process Instance ID... -->
+                <h1>Case Homepage: {{currentCase.variables.caseCompanyName}}</h1>
+            </div>
+
+
+            <div class="pull-right">
+            <!-- Display Case ID if its complete otherwise Display Process Instance ID... -->
+                <h1 ng-if="!currentCase.variables.caseID || currentCase.variables.caseID.length < 13">Case ID {{":" + currentCase['process-instance-id']}}</h1>
+                <h1 ng-if="currentCase.variables.caseID && currentCase.variables.caseID.length > 12">Case ID {{": " + currentCase.variables.caseID}}</h1>
+            </div>
+
+  <!--           <div class="dropdown pull-right">
+              <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Case Actions
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+              </ul>
+            </div> -->
+
+            <hr/>
+            <br> <br>
+        </div>
+
+       <div class="row row-cards-pf">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h3 class="card-pf-title">
+                        Company Name:
+                    </h3>
+                    <strong><div class="card-pf-body" click-to-edit var-name="caseCompanyName" save-current-case="saveCurrentCaseVariable(varName, value)" type="inputText" ng-model="currentCase.variables.caseCompanyName">
+                    </div></strong>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h3 class="card-pf-title">
+                        GFCID:
+                    </h3>
+                    <strong><div class="card-pf-body" click-to-edit var-name="GFCID" save-current-case="saveCurrentCaseVariable(varName, value)"  type="inputText" ng-model="currentCase.variables.GFCID"></div></strong>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cards-pf">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h3 class="card-pf-title">
+                        Case Owner:
+                    </h3>
+                    <strong><div class="card-pf-body">{{currentCase.variables.caseOwner}}
+                    </div></strong>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h3 class="card-pf-title">
+                        Current Case Status:
+                    </h3>
+                    <strong><div class="card-pf-body" ng-model="currentCase.variables.caseTaskStatus">{{currentCase.variables.caseTaskStatus}}</div></strong>
+                </div>
+            </div>
+        </div>
+
+
+ <!--       <div class="row row-cards-pf">
+
+            <div class="col-xs-6 col-sm-4 col-md-4">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h1 class="card-pf-title">
+                        <strong>{{currentCase["start-date"] | date:'dd MMMM'}}</strong> 
+                  </h1>
+                    <div class="card-pf-body"> Case Creation Date</div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h1 class="card-pf-title">
+                        <strong>{{daysBetween(currentCase["start-date"])}} Days</strong>
+                    </h1>
+                    <div class="card-pf-body">Case Age</div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4">
+                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                    <h1 class="card-pf-title">
+                        <strong>15 Aug</strong>
+                    </h1>
+                    <div class="card-pf-body">Estimated Case Completion Date</div>
+                </div>
+            </div>
+        </div> -->
+
+
+         <div class=" row col-xs-12 col-sm-12">
+
+            <div class="col-xs-6 col-sm-6">
+
+
+                <onboarding-status pid="pid"></onboarding-status>
+
+
+                <div class="panel panel-default small overflowx">
+                    <div class="panel-body"  >
+                        <table class="datatable table table-striped table-bordered overflowy">
+                            <thead>
+                                <tr>
+                                    <th>Task ID</th>
+                                    <th>Name</th>
+                                 <!--    <th>Case Owner</th> -->
+                                    <th>Task Owner</th>
+                                    <th>Status</th>
+                                    <th>Creation Time</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="task in processTasks track by $index" >
+                                        <td >{{task['task-id']}}</td>
+                                        <td >{{task['task-name']}}</td>
+                                     <!--    <td >{{task['task-actual-owner']}}</td> -->
+                                        <td >{{task['task-business-owner']}}</td>
+                                        <td >{{task['task-status']}}</td>
+                                        <td >{{task['task-created-on'] | date:'MMMM d, y h:mm a'}}</td>
+                                    <td>
+                                        <button class="btn btn-default btn-block" ng-show="task['task-status'] == 'Ready'" ng-click="updateTaskInstanceState(task['task-id'],'claimed')">Claim</button>
+                                        <button class="btn btn-default btn-block" ng-show="task['task-status'] == 'Reserved'" ng-click="updateTaskInstanceState(task['task-id'],'started')">Start</button>
+                                        <button class="btn btn-default btn-block" ng-show="task['task-status'] == 'Reserved'" ng-click="updateTaskInstanceState(task['task-id'],'released')">Release</button>
+                                        <button class="btn btn-default btn-block" ng-show="task['task-status'] == 'InProgress'" ng-click="updateTaskInstanceState(task['task-id'],'released')">Release</button>
+                                        <button class="btn btn-default btn-block" ng-show="task['task-status'] == 'InProgress'" ng-click="modalTaskViewOpen(task['task-id'])">View</button>
+                                        <!-- <button class="btn btn-default"  ng-click="modalTaskUpdateOpen(task['task-id'])">Update</button> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-xs-6 col-sm-6">
+                <tat-account-opening></tat-account-opening>
+            </div>
+
+        </div>
+
+
+
+        <div class=" row col-xs-12 col-sm-12">
+
+            <div class="col-xs-6 col-sm-6">
+
+                <div class="panel panel-default form-horizontal">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Company Profile</h3> 
+                    </div>
+                    <div class="panel-body">
+
+                       <!--  <div class="form-group" >
+                            <label class="col-sm-3 control-label" >GFCID</label>
+                            <div class="col-sm-9">
+                                <p  click-to-edit var-name="GFCID" save-current-case="saveCurrentCaseVariable(varName, value)"  type="inputText" ng-model="currentCase.variables.GFCID"></p>
+                            </div>
+                        </div> -->
+
+                        <div class="row row-cards-pf">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="card-pf card-pf-accented card-pf-aggregate-status">
+                                    <h3 class="card-pf-title">
+                                        GFCID:
+                                    </h3>
+                                    <strong><div class="card-pf-body" click-to-edit var-name="GFCID" save-current-case="saveCurrentCaseVariable(varName, value)"  type="inputText" ng-model="currentCase.variables.GFCID"></div></strong>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="card-pf card-pf-accented card-pf-aggregate-status" style="padding-bottom: 0.5em">
+                                    <h3 class="card-pf-title">
+                                        Onboarding type:
+                                    </h3>
+                                    <strong><div class="card-pf-body" >{{currentCase.variables.caseType}}</div></strong>
+                                </div>
+                            </div>        
+                        </div>
+
+
+
+
+
+
+
+                        <div ng-if="contacts">
+                            <contacts contacts="contacts" pid="pid"></contacts>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-xs-6 col-sm-6">
+                <account-products accounts="accounts"></account-products>
+            </div>
+
+        </div>
+                
+
+        <div class="col-xs-12 col-sm-12" >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Case Notes</h3> </div>
+                <div class="panel-body" >
+                    <table class="datatable table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Comments<button class="btn btn-default pull-right"  ng-click="modalTaskViewOpen()">Add Comment</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="comment in comments">
+                                <td>
+                                    <div class="pull-left" ng-bind-html="comment"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- </div> -->
+</div>
+
+<!-- <div id="mydiv" ng-show="loading">
+    <div class="spinner" ng-show="loading"></div>
+</div> -->
+
+    <script>
+        // Initialize Datatables
+        $(document).ready(function () {
+            $(window).resize(function () {
+                ellipses1 = $("#bc1 :nth-child(2)")
+                if ($("#bc1 a:hidden").length > 0) {
+                    ellipses1.show()
+                }
+                else {
+                    ellipses1.hide()
+                }
+            })
+        });
+    </script>

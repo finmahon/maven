@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form id="684162958">
+    <property name="name" value="TicketTask-taskform.form"/>
+    <property name="displayMode" value="default"/>
+    <property name="status" value="0"/>
+    <field id="734456628" name="project" position="0" type="InputText">
+        <property name="fieldRequired" value="false"/>
+        <property name="groupWithPrevious" value="false"/>
+        <property name="label" value="Project"/>
+        <property name="errorMessage" value=""/>
+        <property name="title" value=""/>
+        <property name="readonly" value="true"/>
+        <property name="isHTML" value="false"/>
+        <property name="hideContent" value="false"/>
+        <property name="inputBinding" value="Stelios"/>
+        <property name="fieldClass" value="java.lang.String"/>
+    </field>
+    <field id="13473131" name="description" position="2" type="InputText">
+        <property name="fieldRequired" value="false"/>
+        <property name="groupWithPrevious" value="false"/>
+        <property name="label" value="Description"/>
+        <property name="errorMessage" value=""/>
+        <property name="title" value=""/>
+        <property name="readonly" value="true"/>
+        <property name="isHTML" value="false"/>
+        <property name="hideContent" value="false"/>
+        <property name="inputBinding" value="This is a description"/>
+        <property name="fieldClass" value="java.lang.String"/>
+    </field>
+    <field id="255316611" name=":decorator_0" position="3" type="Separator">
+        <property name="fieldRequired" value="false"/>
+        <property name="groupWithPrevious" value="false"/>
+        <property name="readonly" value="false"/>
+        <property name="fieldClass" value="Separator"/>
+    </field>
+    <field id="2029542310" name="comments" position="4" type="InputText">
+        <property name="fieldRequired" value="false"/>
+        <property name="groupWithPrevious" value="false"/>
+        <property name="label" value="Comments"/>
+        <property name="errorMessage" value=""/>
+        <property name="title" value=""/>
+        <property name="readonly" value="false"/>
+        <property name="isHTML" value="false"/>
+        <property name="hideContent" value="false"/>
+        <property name="outputBinding" value="comments"/>
+        <property name="fieldClass" value="java.lang.String"/>
+    </field>
+    <field id="547635705" name="subject" position="1" type="InputText">
+        <property name="fieldRequired" value="false"/>
+        <property name="groupWithPrevious" value="false"/>
+        <property name="label" value="Subject"/>
+        <property name="errorMessage" value=""/>
+        <property name="title" value=""/>
+        <property name="readonly" value="true"/>
+        <property name="isHTML" value="false"/>
+        <property name="hideContent" value="false"/>
+        <property name="inputBinding" value="Stelios is my Subject"/>
+        <property name="fieldClass" value="java.lang.String"/>
+    </field>
+    <dataHolder id="comments" inputId="" name="#B29FE4" outId="comments" type="basicType" value="java.lang.String"/>
+    <dataHolder id="description" inputId="desc" name="#FF54A7" outId="" type="basicType" value="java.lang.String"/>
+    <dataHolder id="project" inputId="project" name="#E9E371" outId="" type="basicType" value="java.lang.String"/>
+    <dataHolder id="subject" inputId="subject" name="#E9E371" outId="" type="basicType" value="java.lang.String"/>
+</form>

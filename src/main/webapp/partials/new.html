@@ -1,0 +1,244 @@
+<div class="container-fluid container-cards-pf" >
+
+    <div class="page-header">
+        <h1>Create New Client Onboarding Case</h1> 
+    </div>
+    <div class="alert alert-danger" ng-show="data.error.code"> {{data.result}} </div>
+    <div class="panel panel-default" ng-show="!data.error.code && data.result">
+        <div class="panel-body">
+            <h3>Case Successfully Created.</h3>
+            <p> Your Case was created.</br> Case ID Reference : {{data.result}} </p>
+            <button type="submit" class="btn btn-default" ng-click="reload()">Create Another Case</button>
+        </div>
+    </div>
+
+
+
+    <div  ng-hide="data.error.code || data.result"> 
+        <div class="col-xs-12 col-sm-12" >
+            <div class="col-xs-6 col-sm-6">
+                <form name="onboardForm"  novalidate>
+                    <div class="panel panel-default form-horizontal">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Case Company Profile</h3> </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="caseType">Case Type</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" required ng-model="form.caseType" ng-options="item as item.desc for item in caseTypes">
+                                        <option value="" selected disabled>Please Select Case Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="caseCompanyName">Company Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" required id="caseCompanyName" class="form-control" required ng-model="form.caseCompanyName"> </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="caseCompanyContactAgreement">Agreement to Proceed</label>
+                                <div class="col-sm-9">
+                                    <input type="checkbox" id="caseCompanyContactAgreement" ng-model="form.caseProceed" ng-true-value="true" ng-false-value="false"> </div>
+                            </div>
+                        </div>
+                        <div ng-show="onboardError" ng-click="resetError()" class="alert alert-danger fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> {{onboardError}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+
+
+            <div class="col-xs-6 col-sm-6">
+
+                <div class="panel panel-default form-horizontal">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Company Contact Details</h3> 
+                    </div>
+                        <div class="panel-body">
+                            <contacts contacts="contacts" ></contacts>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        
+        <div class="col-xs-12 col-sm-12" >
+            <div class="col-xs-6 col-sm-6">
+                    <div class="panel panel-default form-horizontal">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">GFCID Request</h3> </div>
+                        <div class="panel-body">
+                            <div class="form-group ">
+                                <label class="col-sm-3 control-label" for="caseGFCIDRequestDate">GFCID Request Date</label>
+                                <div class="col-sm-9">
+                                    <div id="caseEstimatedDate" class="input-group date">
+                                        <input type="text" class="form-control bootstrap-datepicker" ng-model="form.caseGFCIDRequestDate">
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default form-horizontal">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Accounts Requested</h3> </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-warning text-center" ng-if="accounts.length < 1">
+                                       No Accounts Added to Case 
+                                    </div>
+                                    <table class="table" ng-if="accounts.length > 0">
+                                        <tr>
+                                            <th><input type="checkbox" ng-model="selectedAllAccounts" ng-click="checkAll()" /></th>
+                                            <th>Account Name</th>
+                                            <th>Branch</th>
+                                            <th>Account Currency</th>
+                                            <th>Account Type</th>
+                                            <th>Products</th>
+                                        </tr>
+                                        <tr ng-repeat="account in accounts">
+                                            <td><input type="checkbox" ng-model="account.selected"/></td>
+                                            <td>{{account.name}}</td>                           
+                                            <td>{{account.branch}} </td>
+                                            <td>{{account.currency}} </td>
+                                            <td>{{account.type}} </td>
+                                            <td>
+                                                <ul >
+                                                    <li ng-repeat="prod in account.products"> {{ prod }} </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <input ng-hide="!accounts.length" type="button" class="btn btn-danger pull-right" ng-click="removeRow()" value="Remove">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="col-xs-6 col-sm-6">
+                <div class="panel panel-default  form-horizontal">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Account Opening &amp; Product Details</h3> 
+                    </div>
+
+                    <form name="accountsForm"  novalidate>
+
+                        <div class="panel-body">
+                            <h5>Operating Account Request</h5>
+                            <hr/>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="caseCompanyName">Account Name</label>
+                                <div class="col-sm-9">
+                                    <select  class="form-control" ng-model="accountName" required ng-options="x for x in accountNames">
+                                        <option value="" selected disabled>Please Select Account Name</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="accountBranch">Branch</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="accountBranch" required class="form-control" ng-model="accountBranch" > </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="accountCurrency">Account Currency</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="accountCurrency" required class="form-control" ng-model="accountCurrency"> </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="accountType">Account Type</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control"  required ng-model="accountType" ng-options="x for x in accountTypes">
+                                        <option value="" selected disabled>Please Select Account Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h5 style="padding-top:20px;">Confirmation of Products Request</h5>
+                            <hr/>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4" ng-repeat="prod in accountProducts">
+                                  <input 
+                                    ng-required="isAccCheckboxValid()"
+                                    type="checkbox"
+                                    name="selectedProducts[]"
+                                    value="{{prod.name}}"
+                                    ng-model="prod.selected"> {{prod.name}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="accountError" ng-click="resetError()" class="alert alert-danger fade in">
+                                    <span class="close"  aria-label="close">&times;</span>
+                                    <strong>Error!</strong> {{accountError}}
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button id="addRow" type="button" class="btn btn-primary pull-right" ng-click="addRow()">Add New Account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+
+        
+        <div class="col-xs-12 col-sm-12">
+            <hr/>
+            <div ng-show="onboardError || onboardAccError" ng-click="resetError()" class="alert alert-danger fade in">
+                    <span class="close"  aria-label="close">&times;</span>
+                    <strong>Error!</strong> {{onboardError}}
+            </div>
+
+            <div class="form-group">
+                <div id="date-2" class="col-sm-12" class="input-group date">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="createNewProcessInstance()">Create New Case</button>
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEMP CREATE BUTTON -->
+<!--
+            <div class="form-group">
+                <div id="date-2" class="col-sm-12" class="input-group date">
+                    <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="createProcessInstance()">Temp Auto Case Creation</button>
+                    <button type="button" class="btn btn-primary" ng-click="createNewProcessInstance()">New Auto Case Creation</button>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+</div>
+
+    <script>
+        var editor;
+        $('#caseCreationDate').datepicker({
+            autoclose: true
+            , orientation: "top auto"
+            , todayBtn: "linked"
+            , todayHighlight: true
+        });
+        $('#caseEstimatedDate').datepicker({
+            autoclose: true
+            , orientation: "top auto"
+            , todayBtn: "linked"
+            , todayHighlight: true
+        });
+        $('.selectpicker').selectpicker();
+    </script>

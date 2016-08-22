@@ -1,0 +1,29 @@
+{
+  "name": "citi-onboarding-web",
+  "authors": [
+    "Ally Jarrett <ajarrett@redhat.com>"
+  ],
+  "description": "CITI Client Onboarding Web App",
+  "main": "bower.json",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-datatables": "^0.5.4",
+    "angular-formly-templates-bootstrap": "^6.3.2",
+    "angular-patternfly": "^3.5.1",
+    "angular-route": "^1.5.7",
+    "angular-formly": "^8.2.1",
+    "angular": "^1.5.7",
+    "keycloak": "^2.0.0",
+    "patternfly": "^3.5.1",
+    "lodash": "~4.14.2"
+  }
+}

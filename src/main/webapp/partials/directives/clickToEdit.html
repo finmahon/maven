@@ -1,0 +1,13 @@
+<div class="templateRoot">
+    <div class="hover-edit-trigger" title="click to edit">
+        <div class="hover-text-field" ng-show="!editState" ng-click="toggle()">
+            {{model}}
+            <div class="edit-pencil glyphicon glyphicon-pencil"></div>
+        </div>
+        <input class="inputText" type="text" ng-model="localModel" ng-enter="save()" ng-show="editState && type == 'inputText'" />
+    </div>
+    <div class="edit-button-group pull-right" ng-show="editState">
+        <div class="glyphicon glyphicon-ok"  ng-click="save()"></div>
+        <div class="glyphicon glyphicon-remove" ng-click="cancel()"></div>
+    </div>
+</div>

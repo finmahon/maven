@@ -1,0 +1,28 @@
+{
+    "accountsList": [
+        {
+            "accountCategory": "Main"
+            , "branchName": "Dublin"
+            , "currency": "Euros"
+            , "accountType": "AccountType"
+            , "products": [
+            "FX"
+            , "Online Banking"
+         ]
+      }
+        , {
+            "accountCategory": "Auxilary"
+            , "branchName": "London"
+            , "currency": "Pounds"
+            , "accountType": "AccountType"
+            , "products": [
+            "Digital"
+            , "Online Banking"
+         ]
+      }
+   ]
+    , "gfcid": "test-001"
+    , "caseID": "test-002"
+    , "kycPreviousTaskEndTime": "2016-07-26 07:31:14"
+    , "casemanagerRole": "casemanager-rus"
+}

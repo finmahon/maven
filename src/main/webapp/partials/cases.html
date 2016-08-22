@@ -1,0 +1,38 @@
+<div class="container-fluid container-cards-pf">
+    <div class="page-header">
+        <h1>Case Management</h1>
+         <hr/>
+    </div>
+     <div class="row" ng-controller="CaseController as vm" ng-init="getCases()">
+        <table datatable="ng" dt-options="vm.dtOptions" class="datatable table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>GFCID</th>
+                    <th>Status</th>
+                    <th>Case ID</th>
+                    <th>Onboarding Type</th>
+                    <th>Creation Date</th>
+                    <th>TAT to Date</th>
+                    <th>Owner</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="process in processes">
+                    <td>{{process.variables.caseCompanyName}}</td>
+                    <td>{{process.variables.GFCID}}</td>
+                    <td>{{constants.processState[process["process-instance-state"]].uiState}}</td>
+                    <td>{{process.variables.caseID}}</td>
+                    <td>{{process.variables.caseType}}</td>
+                    <td>{{process["start-date"] | date:'MMMM d, y'}}</td>
+                    <td>{{daysBetween(process["start-date"])}} Days</td>
+                    <td ng-if="!process.variables.caseOwner">{{process["initiator"]}} </td>
+                    <td ng-if="process.variables.caseOwner">{{process.variables.caseOwner}}</td>
+                    <td>
+                        <button class="btn btn-primary center" data-toggle="tooltip" data-container="body" title="Tooltip on right" ng-click="openCase(process)">Case Details</button>
+                    </td>
+                </tr>
+        </table>
+    </div> 
+</div>

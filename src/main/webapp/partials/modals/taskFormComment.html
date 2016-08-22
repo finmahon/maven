@@ -1,0 +1,18 @@
+<div class="modal-header" >
+    <button type="button" class="close" ng-click="modalCancel()" aria-hidden="true"> <span class="pficon pficon-close"></span> </button>
+    <h1 class="modal-title" id="myModalLabel" ng-show="currentTask">Update Task</h1>
+    <h1 class="modal-title" id="myModalLabel" ng-show="currentTask">Task Name: {{vm.title}}</h1> 
+     <h1 class="modal-title" id="myModalLabel" ng-hide="currentTask">{{vm.title}}</h1> 
+</div>
+<div class="modal-body">
+
+    <div >
+        <form ng-submit="submitForm()" name="vm.form" novalidate>
+            <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+                <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Save</button>
+                <button type="button" class="btn btn-danger" ng-click="vm.options.resetModel()">Reset</button>
+                <button type="button" ng-click="modalCancel()" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </formly-form>
+        </form>
+    </div>
+</div>

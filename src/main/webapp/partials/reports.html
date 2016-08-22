@@ -1,0 +1,228 @@
+<div class="container-fluid container-cards-pf">
+    <div class="page-header">
+        <h1>Reporting</h1> 
+    </div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="row panel panel-primary" n>
+          <div class="panel-heading">
+                <h3 class="panel-title">Account Opening Status </h3> 
+          </div>
+        </div>
+
+        <div class="row " >
+          <div class="crumbs crumbs-active">
+            <ul>
+              <li>one</li>
+              <li>two</li>
+              <li>three</li>
+              <li>four</li>
+              <li>five</li>
+            </ul>
+          </div>      
+        </div>
+        <div class="row " >
+          <div class="crumbs crumbs-inactive">
+            <ul>
+              <li>one</li>
+              <li>two</li>
+              <li>three</li>
+              <li>four</li>
+              <li>five</li>
+            </ul>
+          </div>      
+        </div>
+
+    </div>
+</div>
+
+<div >
+    <div class="datetext">alskdjalkdjs</div>
+    <div class="datebadge">
+      <div class="dateboxtop">
+          Feb
+      </div>
+      <div class="dateboxbottom">
+          Mar
+      </div>
+    </div>
+    <br>
+</div>
+
+
+
+
+<!-- <div class="container">
+   &nbsp;
+</div> -->
+
+
+      <!-- <div class="container"> -->
+        <div class="row panel panel-primary" ng-controller="ReportController">
+          <div class="panel-heading">
+            <h2 class="panel-title">angular contact list app</h2>
+          </div> 	 
+      <div class="col-xs-5 panel-body">
+        <ul class="list-group">
+          <li class="list-group-item"> 
+              <h4 style="margin-bottom: 25px;">Contacts
+                <a ng-click="contactOperation('add')" class="pull-right">
+                    <button class="btn btn-primary">
+                     <span class="fa fa-user-plus"></span>
+                        <span>Add Contact</span>
+                    </button>
+                </a>
+                </h4>
+                  <div ng-show="addContactError.state" class="alert alert-danger fade in">
+                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> {{addContactError.message}}
+                  </div>
+                    <div ng-show="!!!contacts.length" class="alert alert-warning fade in">
+                    <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>No Contacts currently added to case</strong> 
+                  </div>
+<!--            <input class="form-control" placeholder="Seach Your Contacts" type="text" ng-model="searchText">-->
+            <contact class="list-group-item" ng-repeat="contact in contacts | orderBy: 'name' | filter: searchText " ng-click="focusOnContact(contact)" ng-show="!!contacts.length"></contact>
+              
+          </li>
+        </ul> 
+      </div>
+      <div class="col-xs-7">
+          <div ng-switch on="contactState">  
+            <div ng-switch-when="view">  
+                <view-contact></view-contact>
+            </div>  
+            <div ng-switch-when="edit">  
+                <edit-contact></edit-contact>   
+            </div>
+            <div ng-switch-when="add">  
+                <edit-contact></edit-contact>   
+            </div>  
+            <div ng-switch-default>  
+                <view-contact></view-contact>
+            </div>  
+        </div>
+      </div>
+    </div>
+<!-- </div> -->
+
+    
+<div ng-controller="ReportController as vm">
+      <h1>angular-formly example: {{vm.exampleTitle}}</h1>
+
+      <form ng-submit="vm.onSubmit()" name="vm.form" novalidate>
+        <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+          <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+          <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Reset</button>
+        </formly-form>
+      </form>
+      <hr />
+      <h2>Model Value</h2>
+      <pre>{{vm.model | json}}</pre>
+      <h2>Fields <small>(note, functions are not shown)</small></h2>
+      <pre>{{vm.originalFields | json}}</pre>
+      <h2>Form</h2>
+      <pre>{{vm.form | json}}</pre>
+    </div>
+    
+</div>
+
+   
+    <script type="text/ng-template" id="contact.html">
+        <a> {{contact.name}}</a>
+    </script>
+
+    <script type="text/ng-template" id="view-contact.html">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Company Contact Name:</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static">{{currentContact.name}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Company Contact Number:</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static">{{currentContact.phone}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Company Contact Email:</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static">{{currentContact.email}}</p>
+                        </div>
+                    </div>
+                </form>
+            
+                <div class="pull-right">
+                    <a ng-click="contactOperation('edit')">
+                      <button class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span><span> Edit</span>
+                      </button>
+                    </a>
+
+                    <a href="#/"><button class="btn btn-danger" ng-click="removeContact(currentContact)">
+                      <span class="glyphicon glyphicon-remove"></span><span> Remove</span>
+                    </button></a>
+                </div>
+            </div>
+    </script>
+
+    <script type="text/ng-template" id="edit-contact.html">
+
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="caseContactName">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="caseCompanyName" class="form-control" required ng-model="currentContact.name"> </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="caseCompanyContactPosition">Position</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-model="form.caseContactPos" ng-options="pos for pos in caseContactPositions">
+                                    <option value="" selected disabled>Please Select Contact Position</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="caseCompanyContactEmail">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" id="caseCompanyContactEmail" class="form-control" required ng-model="currentContact.email"> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="caseCompanyContactNumber">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="caseCompanyContactNumber" class="form-control" required ng-model="currentContact.phone"> 
+                            </div>
+                        </div>
+                    </form>
+                    <div class="pull-right">
+                        <a ng-if="contactState === 'add' " ng-click="contactOperation('add')">
+                        <button class="btn btn-primary">
+                         <span class="glyphicon glyphicon-ok"></span>
+                         <span> Add</span>
+                        </button>
+                      </a>
+
+                      <a ng-if="contactState !== 'add'" ng-click="contactOperation('view')">
+                        <button class="btn btn-primary">
+                         <span class="glyphicon glyphicon-ok"></span>
+                         <span>Save</span>
+                        </button>
+                      </a>
+
+                      <a>
+                        <button class="btn btn-danger" ng-click="contactOperation('view')">
+                          <span class="glyphicon glyphicon-remove"></span>
+                            <span>Cancel</span>
+                        </button>
+                      </a>
+                        </div>
+                </div>
+    </script>
+

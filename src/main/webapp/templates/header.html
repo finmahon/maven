@@ -1,0 +1,109 @@
+<!-- copied from toolkit: -->
+<header class="header navbar navbar-default navbar-fixed-top">
+  <a href="http://www.citigroup.net/" class="logo" title="Citigroup.net" target="_blank">
+    <img src="../resources/images/citi-logo.png" alt="Citigroup">
+  </a>
+  <div class="navbar-header">
+    <a id="sidebar-trigger">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#" class="navbar-brand">
+      CITI Client Onboarding
+    </a>
+  </div>
+  <div class="nav-wrapper">
+    <ul class="nav navbar-nav">
+        
+<!-- Notifications Icon Placeholder for future iterations. -->
+<!--
+      <li class="dropdown">
+        <a href="javascript:;" data-toggle="dropdown">
+          <i class="fa fa-bullhorn"></i>
+          <span class="sr-only">Messages</span>
+          <span class="badge badge-danger">2</span>
+        </a>
+        <ul class="dropdown-menu dropdown-md media-list">
+          <li class="dropdown-header">Messages (2)</li>
+          <li class="media">
+            <a href="javascript:" class="pull-left">
+              <div class="media-object bg-color-info">   bg-color-danger
+                <span class="i pficon pficon-info "></span></div>
+            </a>
+            <div class="media-body">
+              <a href="javascript:;">
+                <h6 class="media-heading">Added Datasources TestDS</h6>
+              </a>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li class="media">
+            <a href="javascript:;" class="pull-left">
+              <div class="media-object bg-color-info"><span class="i pficon pficon-info"></span></i></div>
+            </a>
+            <div class="media-body">
+              <a href="javascript:;">
+                <h6 class="media-heading">Modified Datasources ExampleDS</h6>
+              </a>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li><a href="">Clear Messages</a></li>
+        </ul>
+      </li>
+-->
+      <li class="dropdown">
+        <a href="javascript:;" data-toggle="dropdown">
+          <i class="fa fa-cog"></i>
+          <span class="sr-only">Settings</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="javascript:;">
+              <span class="pficon pficon-settings" style="padding-right: 5px"></span>
+              Settings
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="javascript:;">
+              <span class="pficon pficon-project" style="padding-right: 5px"></span> Roles: <i>Onboarding User</i>
+            </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</header>
+
+
+<div id="sidebar" class="navbar navbar-sidebar sidebar ">
+  <div id="sidebar-inner">
+    <div class="sidebar-profile">
+      <div class="user-name">Joe Bloggs</div>
+      <img src="../resources/images/citi-user.png" alt="John Doe">
+      <div class="user-links">
+        <a href="">Profile</a>
+        <a href="">Logout</a>
+      </div>
+    </div>
+
+    <ul class="nav nav-list">
+      <li class="" ng-class="{ active: isActive('/')}">
+        <a ng-href="#/">
+          <span class="">Home</span>
+        </a>
+      </li>
+      <li class="" ng-class="{ active: isActive('/cases')}">
+        <a ng-href="#/cases">Case Management</a>
+      </li>
+      <li class="" ng-class="{ active: isActive('/new')}">
+        <a ng-href="#/new">Create Case</a>
+      </li>
+      <li class="" ng-class="{ active: isActive('/reports')}">
+        <a ng-href="#/reports">Reporting</a>
+      </li>
+     </ul>
+
+  </div>
+</div>
+

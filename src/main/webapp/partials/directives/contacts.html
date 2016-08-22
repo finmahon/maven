@@ -1,0 +1,185 @@
+<div>
+<!-- <div class="panel panel-default form-horizontal">
+    <div class="panel-heading">
+        <h3 class="panel-title">Company Contact Details</h3> 
+    </div>
+    <div class="panel-body"> -->
+    <form name="editContactForm"  novalidate>
+            
+            <div ng-repeat="contact in contacts track by $index">
+                <div ng-show="editCtrl[$index].expand"><hr></div>
+                <h4 ng-show="editCtrl[$index].edit">Edit Contact Details</h4>
+                <div class="form-group" >
+                    <label class="col-sm-3 control-label" >{{contacts.length === 1 ? 'Contact' : 'Contact #' + ($index+1)}}</label>
+                    <div class="col-sm-9">
+                        <p class="form-control" ng-click="toggleExpand($index)" ng-hide="editCtrl[$index].edit" ng-model="contact.name"> 
+                            {{contact.name}}
+                            <span class="glyphicon glyphicon-menu-down pull-right" ng-hide="editCtrl[$index].expand"></span>
+                            <span class="glyphicon glyphicon-menu-up pull-right" ng-show="editCtrl[$index].expand"></span>
+                        </p>
+                        <input type="text" name="name" required class="form-control" ng-class="{invalidCiti:contactEditError && editContactForm.name.
+                         $invalid} " ng-show="editCtrl[$index].edit" ng-model="editCtrl[$index].name"> 
+                         <div ng-show="editContactForm.name.$invalid && contactEditError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must enter contact name
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="editCtrl[$index].expand">
+                    <div class="form-group" >
+                        <label class="col-sm-3 control-label" >Position</label>
+                        <div class="col-sm-9">
+                            <p class="form-control"  ng-hide="editCtrl[$index].edit" ng-model="contact.position"> {{contact.position}}</p>
+                              <select class="form-control" ng-show="editCtrl[$index].edit" ng-model="editCtrl[$index].position" ng-options="item as item for item in contactPositions">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label class="col-sm-3 control-label" >Number</label>
+                        <div class="col-sm-9">
+                            <p class="form-control"  ng-hide="editCtrl[$index].edit" ng-model="contact.name"> {{contact.phone}}</p>
+            <!--                 <input type="text" class="form-control"  ng-show="editCtrl[$index].edit" ng-model="editCtrl[$index].phone"> -->
+                            <input ng-show="editCtrl[$index].edit" type="text" name="number" ng-pattern="numberFormat" class="form-control" ng-class="{invalidCiti:contactEditError && editContactForm.number.
+                         $invalid}"  ng-model="editCtrl[$index].phone"> 
+                            <div ng-show="editContactForm.number.$invalid && contactEditError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must enter valid number only
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="form-group" >
+                        <label class="col-sm-3 control-label" >Email</label>
+                        <div class="col-sm-9">
+                            <p class="form-control"  ng-hide="editCtrl[$index].edit" ng-model="contact.name"> {{contact.email}}</p>
+                 <!--            <input type="text" class="form-control"  ng-show="editCtrl[$index].edit" ng-model="editCtrl[$index].email">  -->
+                            <input ng-show="editCtrl[$index].edit" type="email" name="email" ng-pattern="emailFormat" ng-class="{invalidCiti:contactEditError && editContactForm.email.
+                             $invalid}" class="form-control"  ng-model="editCtrl[$index].email"> 
+                            <div ng-show="editContactForm.email.$invalid && contactEditError" ng-click="resetError()"  class="alertCiti fade in">
+                                    <span class="close"  aria-label="close">&times;</span>
+                                    <strong>Error!</strong> Must enter valid email
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <div class="pull-right">
+                           
+                            <button ng-click="togggleEdit($index)" ng-hide="editCtrl[$index].edit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span><span> Edit</span>
+                            </button>
+
+                            <button ng-click="saveInput($index)" ng-show="editCtrl[$index].edit" class="btn btn-primary">
+                                 <span class="fa fa-user-plus"></span><span> Save</span>
+                            </button>
+
+                            <button ng-click="cancel($index)" ng-show="editCtrl[$index].edit" class="btn btn-default">
+                                 <span class="glyphicon glyphicon-remove"></span><span> Cancel</span>
+                            </button>
+                 
+                            <button class="btn btn-danger" ng-hide="editCtrl[$index].edit" ng-click="remove($index)">
+                                 <span class="glyphicon glyphicon-remove"></span><span> Remove</span>
+                            </button>
+                        </div>
+                        <div class="form-group" >&nbsp;</div>
+                        <div class="form-group" >&nbsp;</div>
+ 
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        <form name="nowContactForm"  novalidate>
+        
+
+            <div ng-show="newInput">
+                <hr/>
+                <h4 style="padding-top:20px;">Create New Company Contact</h4>
+                <div class="form-group" >
+                    <label class="col-sm-3 control-label" >Name</label>
+                    <div class="col-sm-9">
+                         <input type="text" name="name" class="form-control" ng-class="{invalidCiti:contactError && nowContactForm.name.
+                         $invalid} " required ng-model="name"> 
+                         <div ng-show="nowContactForm.name.$invalid && contactError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must enter contact name
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    <label class="col-sm-3 control-label" >Position</label>
+                    <div class="col-sm-9">
+                         <!-- <input type="text" class="form-control"   ng-model="position">  -->
+                        <select class="form-control" required name="position" ng-model="position" ng-class="{invalidCiti:contactError && nowContactForm.position.
+                         $invalid} " ng-options="item as item for item in contactPositions">
+                            <option value="" selected disabled>Please Select Position</option>
+                        </select>
+                        <div ng-show="nowContactForm.position.$invalid && contactError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must select position
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" >
+                    <label class="col-sm-3 control-label" >Number</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="number" ng-pattern="numberFormat" class="form-control" ng-class="{invalidCiti:contactError && nowContactForm.number.
+                         $invalid}"  ng-model="phone"> 
+                        <div ng-show="nowContactForm.number.$invalid && contactError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must enter valid number only
+                        </div>
+
+                    </div>
+                </div>
+
+                 <div class="form-group" >
+                    <label class="col-sm-3 control-label" >Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" name="email" ng-pattern="emailFormat" ng-class="{invalidCiti:contactError && nowContactForm.email.
+                         $invalid}" class="form-control"  ng-model="email"> 
+                        <div ng-show="nowContactForm.email.$invalid && contactError" ng-click="resetError()"  class="alertCiti fade in">
+                                <span class="close"  aria-label="close">&times;</span>
+                                <strong>Error!</strong> Must enter valid email
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div ng-show="contactNumError" ng-click="resetError()" class="alert alert-danger fade in">
+                    <span class="close"  aria-label="close">&times;</span>
+                    <strong>Error!</strong> {{errorMsg}}
+            </div>
+
+
+            <div class="form-group" >
+                <div class="col-sm-12">
+                    <div class="form-group" >
+                        <div class="pull-right">
+                            <button  type="button" class="btn btn-primary pull-right " ng-hide="newInput" ng-click="addNew()">
+                                <span class="fa fa-user-plus"></span>
+                               <!--  <span>{{contacts.length <= 0 ? 'Add New Contact' : 'Add Another Contact'}}</span> -->
+                                <span>Add Another Contact</span>
+                            </button>
+                            <button  type="button" class="btn btn-primary pull-right " ng-show="newInput" ng-click="saveNew()">
+                                <span class="fa fa-user-plus"></span>
+                                <span>Create New Contact</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+<!-- 
+    </div>
+</div> -->
+</div>

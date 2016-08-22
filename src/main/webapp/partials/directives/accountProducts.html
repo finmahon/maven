@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Account Opening &amp; Product Details</h3> 
+    </div>
+
+    <div class="panel-body overflowx">
+
+     <table class="datatable table table-striped table-bordered small" >
+        <thead>
+            <tr>
+                <th>Account Name</th>
+                <th>Branch</th>
+                <th>Account Currency</th>
+                <th>Account Type</th>
+                <th>Products</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="account in accounts track by $index">
+            <td>{{account.name}}</td>                           
+            <td>{{account.branch}} </td>
+            <td>{{account.currency}} </td>
+            <td>{{account.type}} </td>
+            <td>
+                <ul >
+                    <li ng-repeat="prod in account.products"> {{ prod }} </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+       
+    </div>
+</div>

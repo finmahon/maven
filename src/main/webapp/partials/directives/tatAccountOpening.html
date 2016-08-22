@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        TAT &amp; Account Opening Dates</h3> 
+    </div>
+
+    <div class="panel-body">
+
+
+
+        <div class="small">
+            <img class="clock" src="resources/images/clock-iconb.png" >
+            <span class=" h2 ">{{daysBetween(currentCase["start-date"])}}</span>
+            Days have elapsed since application was submitted
+            <br><br>
+        </div>
+  
+
+         <div class="text-center small">
+            <div class="datebadge"> 
+                <div class="datetext">Application Date:</div>
+                <div class="datebadge">
+                      <div class="dateboxtop">
+                          {{currentCase["start-date"] | date:'MMM'}}
+                      </div>
+                      <div class="dateboxbottom">
+                          {{currentCase["start-date"] | date:'dd'}}
+                      </div>
+                </div>
+            </div>
+            <div class="datebadge"> 
+                <div class="datetext">Estimate Completion Date:</div>
+                <div class="datebadge">
+                  <div class="dateboxtop">
+                          {{currentCase["start-date"] | date:'MMM'}}
+                      </div>
+                      <div class="dateboxbottom">
+                          {{currentCase["start-date"] | date:'dd'}}
+                      </div>
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+         <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{currentCase.variables.percentageComplete}}%;">
+                <span>{{currentCase.variables.percentageComplete}}%</span>
+          </div>
+        </div>
+    </div>
+</div>
